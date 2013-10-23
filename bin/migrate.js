@@ -7,73 +7,12 @@
 var migrate = require('../lib/migrate'),
     log = require('../lib/logger'),
     join = require('path').join,
-    fs = require('fs');
-
-/**
- * Arguments.
- */
+    fs = require('fs'),
+    program = require('commander');
 
 var args = process.argv.slice(2);
-
-/**
- * Option defaults.
- */
-
 var options = { args: [] };
-
-/**
- * Current working directory.
- */
-
 var currentWorkingDirectory = process.cwd();
-
-/**
- * Usage information.
- */
-
-/**
- * Create a migration with the given `name`.
- *
- * @param {String} name
- */
-
-function create(name) {
-    var path = 'migrations/' + name + '.js';
-    log('create', join(currentWorkingDirectory, path));
-    fs.writeFileSync(path, template);
-}
-
-var usage = [
-    '',
-    '  Usage: migrate [options] [command]',
-    '',
-    '  Options:',
-    '',
-    '     -c, --chdir <path>   change the working directory',
-    '',
-    '  Commands:',
-    '',
-    '     down   [name]    migrate down till given migration',
-    '     up     [name]    migrate up till given migration (the default command)',
-    '     create [title]   create a new migration file with optional [title]',
-    ''
-].join('\n');
-
-/**
- * Migration template.
- */
-
-var template = [
-    ''
-    , 'exports.up = function(next){'
-    , '  next();'
-    , '};'
-    , ''
-    , 'exports.down = function(next){'
-    , '  next();'
-    , '};'
-    , ''
-].join('\n');
 
 // require an argument
 
