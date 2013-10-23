@@ -6,8 +6,7 @@
 var migrate = require('../lib/migrate'),
     log = require('../lib/logger'),
     join = require('path').join,
-    fs = require('fs'),
-    program = require('commander');
+    fs = require('fs');
 
 var options = { args: [] };
 
