@@ -3,6 +3,8 @@
 var migrate = require('../lib/migrate'),
     createMigrationCommand = require('../lib/commands/createMigrationCommand').createMigrationCommand,
     migrateCommand = require('../lib/commands/migrateCommand'),
+    migrateUpCommand = require('../lib/commands/migrateCommand').migrateUpCommand,
+    migrateDownCommand = require('../lib/commands/migrateCommand').migrateDownCommand,
     join = require('path').join,
     program = require('commander');
 
@@ -23,16 +25,12 @@ program
 program
     .command('migrate-down <migrationName>')
     .description('migrate down till given migration')
-    .action(function(migrationName) {
-        console.log('Work in progress - migrate down')
-    });
+    .action(migrateDownCommand);
 
 program
     .command('migrate-up <migrationName>')
     .description('migrate up till given migration')
-    .action(function(migrationName) {
-        console.log('Work in progress - migrate up')
-    });
+    .action(migrateUpCommand);
 
 program
     .command('migrate')
