@@ -2,9 +2,7 @@
 
 var migrate = require('../lib/migrate'),
     createMigrationCommand = require('../lib/commands/createMigrationCommand').createMigrationCommand,
-    migrateCommand = require('../lib/commands/migrateCommand'),
-    migrateUpCommand = require('../lib/commands/migrateCommand').migrateUpCommand,
-    migrateDownCommand = require('../lib/commands/migrateCommand').migrateDownCommand,
+    performMigrateCommand = require('../lib/commands/performMigrateCommand'),
     join = require('path').join,
     program = require('commander');
 
@@ -25,17 +23,23 @@ program
 program
     .command('migrate-down <migrationName>')
     .description('migrate down till given migration')
-    .action(migrateDownCommand);
+    .action(function(migrationName) {
+        performMigrateCommand.migrateDownCommand(program.chdir, migrationName);
+    });
 
 program
     .command('migrate-up <migrationName>')
     .description('migrate up till given migration')
-    .action(migrateUpCommand);
+    .action(function(migrationName) {
+        performMigrateCommand.migrateUpCommand(program.chdir, migrationName);
+    });
 
 program
     .command('migrate')
     .description('migrate until last migration')
-    .action(migrateCommand);
+    .action(function() {
+        performMigrateCommand.migrateCommand(program.chdir);
+    });
 
 //Must execute this after registering all the commands
 program.parse(process.argv);
