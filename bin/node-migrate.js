@@ -21,8 +21,22 @@ program
     });
 
 program
+    .command('migrate-down <migrationName>')
+    .description('migrate down till given migration')
+    .action(function(migrationName) {
+        console.log('Work in progress - migrate down')
+    });
+
+program
+    .command('migrate-up <migrationName>')
+    .description('migrate up till given migration')
+    .action(function(migrationName) {
+        console.log('Work in progress - migrate up')
+    });
+
+program
     .command('migrate')
-    .description('migrate MongoDB instance with migration scripts')
+    .description('migrate until last migration')
     .action(migrateCommand);
 
 //Must execute this after registering all the commands
