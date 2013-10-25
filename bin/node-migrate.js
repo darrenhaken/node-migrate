@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-var migrate = require('../lib/migrate'),
-    createMigrationCommand = require('../lib/commands/createMigrationCommand').createMigrationCommand,
+var createMigrationCommand = require('../lib/commands/createMigrationCommand').createMigrationCommand,
     performMigrateCommand = require('../lib/commands/performMigrateCommand'),
     join = require('path').join,
     program = require('commander');
